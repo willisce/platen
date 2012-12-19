@@ -53,3 +53,8 @@ gem "bootstrap-sass", ">= 2.1.1.0"
 gem "hominid", ">= 3.0.5"
 gem "devise", ">= 2.1.2"
 gem "simple_form", ">= 2.0.4"
+gem "quiet_assets", ">= 1.0.1", :group => :development
+gem "figaro", ">= 0.5.0"
+gem "better_errors", ">= 0.2.0", :group => :development
+gem "binding_of_caller", ">= 0.6.8", :group => :development
+gem "hub", ">= 1.10.2", :require => nil, :group => [:development]
