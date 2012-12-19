@@ -1,0 +1,25 @@
+%h1 Listing entry_views
+
+%table
+  %tr
+    %th Name
+    %th View code
+    %th Entry type
+    %th User
+    %th
+    %th
+    %th
+
+  - @entry_views.each do |entry_view|
+    %tr
+      %td= entry_view.name
+      %td= entry_view.view_code
+      %td= entry_view.entry_type
+      %td= entry_view.user
+      %td= link_to 'Show', entry_view
+      %td= link_to 'Edit', edit_entry_view_path(entry_view)
+      %td= link_to 'Destroy', entry_view, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Entry view', new_entry_view_path

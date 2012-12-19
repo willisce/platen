@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @site_type.name
+%p
+  %b User:
+  = @site_type.user
+
+= link_to 'Edit', edit_site_type_path(@site_type)
+\|
+= link_to 'Back', site_types_path

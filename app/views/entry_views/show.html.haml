@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @entry_view.name
+%p
+  %b View code:
+  = @entry_view.view_code
+%p
+  %b Entry type:
+  = @entry_view.entry_type
+%p
+  %b User:
+  = @entry_view.user
+
+= link_to 'Edit', edit_entry_view_path(@entry_view)
+\|
+= link_to 'Back', entry_views_path

@@ -1,0 +1,10 @@
+= simple_form_for(@field_type) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :label
+    = f.association :data_type
+
+  .form-actions
+    = f.button :submit

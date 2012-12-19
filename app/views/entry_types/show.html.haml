@@ -1,0 +1,22 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @entry_type.name
+%p
+  %b Model:
+  = @entry_type.model.class
+%p
+  %b Form code:
+  = @entry_type.form_code
+%p
+  %b Field Types:
+  - @entry_type.field_types.each do |m|
+    = m.name + ":" + m.data_type.name
+%p
+  %b User:
+  = @entry_type.user.email
+
+= link_to 'Edit', edit_entry_type_path(@entry_type)
+\|
+= link_to 'Back', entry_types_path

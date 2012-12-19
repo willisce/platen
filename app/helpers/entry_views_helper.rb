@@ -1,0 +1,2 @@
+module EntryViewsHelper
+end

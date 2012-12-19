@@ -1,0 +1,25 @@
+%h1 Listing section_views
+
+%table
+  %tr
+    %th Name
+    %th View code
+    %th Section type
+    %th User
+    %th
+    %th
+    %th
+
+  - @section_views.each do |section_view|
+    %tr
+      %td= section_view.name
+      %td= section_view.view_code
+      %td= section_view.section_type
+      %td= section_view.user
+      %td= link_to 'Show', section_view
+      %td= link_to 'Edit', edit_section_view_path(section_view)
+      %td= link_to 'Destroy', section_view, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Section view', new_section_view_path

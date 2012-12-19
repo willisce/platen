@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @section_view.name
+%p
+  %b View code:
+  = @section_view.view_code
+%p
+  %b Section type:
+  = @section_view.section_type
+%p
+  %b User:
+  = @section_view.user
+
+= link_to 'Edit', edit_section_view_path(@section_view)
+\|
+= link_to 'Back', section_views_path

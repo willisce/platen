@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @data_type.name
+%p
+  %b Control code:
+  = @data_type.control_code
+%p
+  %b User:
+  = @data_type.user.email
+
+= link_to 'Edit', edit_data_type_path(@data_type)
+\|
+= link_to 'Back', data_types_path

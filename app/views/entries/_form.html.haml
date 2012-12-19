@@ -1,0 +1,11 @@
+= simple_form_for(@entry) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :data
+    = f.association :entry_type
+    = f.association :section
+    = f.association :user
+
+  .form-actions
+    = f.button :submit

@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @section.title
+%p
+  %b Site:
+  = @section.site
+%p
+  %b Section type:
+  = @section.section_type
+%p
+  %b Parent section:
+  = @section.parent_section
+%p
+  %b User:
+  = @section.user
+
+= link_to 'Edit', edit_section_path(@section)
+\|
+= link_to 'Back', sections_path

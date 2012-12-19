@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @field_type.name
+%p
+  %b Label:
+  = @field_type.label
+%p
+  %b Data type:
+  = @field_type.data_type.name
+%p
+  %b User:
+  = @field_type.user.email
+
+= link_to 'Edit', edit_field_type_path(@field_type)
+\|
+= link_to 'Back', field_types_path
