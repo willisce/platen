@@ -3,7 +3,7 @@
 %table
   %tr
     %th Name
-    %th Site type
+    %th Entry Types
     %th User
     %th
     %th
@@ -12,8 +12,11 @@
   - @section_types.each do |section_type|
     %tr
       %td= section_type.name
-      %td= section_type.site_type
-      %td= section_type.user
+      %td
+        - section_type.entry_types.each do |e|
+          = e.name
+          %br
+      %td= section_type.user.email
       %td= link_to 'Show', section_type
       %td= link_to 'Edit', edit_section_type_path(section_type)
       %td= link_to 'Destroy', section_type, method: :delete, data: { confirm: 'Are you sure?' }

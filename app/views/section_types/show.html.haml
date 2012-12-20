@@ -4,11 +4,12 @@
   %b Name:
   = @section_type.name
 %p
-  %b Site type:
-  = @section_type.site_type
+  %b Entry Types:
+  - @section_type.entry_types.each do |e|
+    = e.name
 %p
   %b User:
-  = @section_type.user
+  = @section_type.user.email
 
 = link_to 'Edit', edit_section_type_path(@section_type)
 \|

@@ -1,20 +1,26 @@
 %h1 Listing site_types
 
-%table
-  %tr
-    %th Name
-    %th User
-    %th
-    %th
-    %th
-
-  - @site_types.each do |site_type|
+%table.table.table-striped
+  %thead
     %tr
-      %td= site_type.name
-      %td= site_type.user
-      %td= link_to 'Show', site_type
-      %td= link_to 'Edit', edit_site_type_path(site_type)
-      %td= link_to 'Destroy', site_type, method: :delete, data: { confirm: 'Are you sure?' }
+      %th Name
+      %th Section Types
+      %th User
+      %th
+      %th
+      %th
+  %tbody
+    - @site_types.each do |site_type|
+      %tr
+        %td= site_type.name
+        %td
+          - site_type.section_types.each do |s|
+            = s.name
+            %br
+        %td= site_type.user.email
+        %td= link_to 'Show', site_type
+        %td= link_to 'Edit', edit_site_type_path(site_type)
+        %td= link_to 'Destroy', site_type, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 

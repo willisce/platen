@@ -40,7 +40,9 @@ class SiteTypesController < TenantController
   # POST /site_types
   # POST /site_types.json
   def create
+    section_type_ids = params[:site_type].delete("section_type_ids")
     @site_type = SiteType.new(params[:site_type])
+    @site_type.section_type_ids = section_type_ids
 
     respond_to do |format|
       if @site_type.save
@@ -59,7 +61,8 @@ class SiteTypesController < TenantController
     @site_type = SiteType.find(params[:id])
 
     respond_to do |format|
-      if @site_type.update_attributes(params[:site_type])
+      section_type_ids = params[:site_type].delete("section_type_ids")
+      if @site_type.update_attributes(params[:site_type]) && @site_type.section_type_ids = section_type_ids
         format.html { redirect_to @site_type, notice: 'Site type was successfully updated.' }
         format.json { head :no_content }
       else

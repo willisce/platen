@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121220000904) do
+ActiveRecord::Schema.define(:version => 20121220034638) do
 
   create_table "data_types", :force => true do |t|
     t.string   "name"
@@ -97,13 +97,11 @@ ActiveRecord::Schema.define(:version => 20121220000904) do
 
   create_table "section_types", :force => true do |t|
     t.string   "name"
-    t.integer  "site_type_id"
     t.integer  "user_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
-  add_index "section_types", ["site_type_id"], :name => "index_section_types_on_site_type_id"
   add_index "section_types", ["user_id"], :name => "index_section_types_on_user_id"
 
   create_table "section_view_definitions", :force => true do |t|
@@ -144,6 +142,18 @@ ActiveRecord::Schema.define(:version => 20121220000904) do
   add_index "sections", ["section_type_id"], :name => "index_sections_on_section_type_id"
   add_index "sections", ["site_id"], :name => "index_sections_on_site_id"
   add_index "sections", ["user_id"], :name => "index_sections_on_user_id"
+
+  create_table "site_type_definitions", :force => true do |t|
+    t.integer  "site_type_id"
+    t.integer  "section_type_id"
+    t.integer  "user_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "site_type_definitions", ["section_type_id"], :name => "index_site_type_definitions_on_section_type_id"
+  add_index "site_type_definitions", ["site_type_id"], :name => "index_site_type_definitions_on_site_type_id"
+  add_index "site_type_definitions", ["user_id"], :name => "index_site_type_definitions_on_user_id"
 
   create_table "site_types", :force => true do |t|
     t.string   "name"

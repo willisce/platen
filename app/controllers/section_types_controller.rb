@@ -40,7 +40,9 @@ class SectionTypesController < TenantController
   # POST /section_types
   # POST /section_types.json
   def create
+    entry_type_ids = params[:section_type].delete("entry_type_ids")
     @section_type = SectionType.new(params[:section_type])
+    @section_type.entry_type_ids = entry_type_ids
 
     respond_to do |format|
       if @section_type.save

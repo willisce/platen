@@ -4,6 +4,6 @@ class Entry< ActiveRecord::Base
   
   belongs_to :entry_type
   belongs_to :section
-  serialize :data, ActiveRecord::Base
+  serialize :data, Object
   attr_accessible :data
 end

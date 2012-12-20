@@ -1,11 +1,16 @@
-%p#notice= notice
 
 %p
-  %b Name:
+  %b.label Name:
   = @site_type.name
 %p
-  %b User:
-  = @site_type.user
+  %b.label Section Types:
+  - @site_type.section_types.each do |s|
+    %a.btn{:href => section_type_path(s)}
+      = s.name
+      %i.icon-zoom-in
+%p
+  %b.label User:
+  = @site_type.user.email
 
 = link_to 'Edit', edit_site_type_path(@site_type)
 \|
