@@ -1,4 +1,6 @@
 class EntryTypesController < TenantController
+  @a = false
+  @b = binding
   # GET /entry_types
   # GET /entry_types.json
   def index
@@ -43,6 +45,9 @@ class EntryTypesController < TenantController
     field_type_ids = params[:entry_type].delete("field_type_ids")
     @entry_type = EntryType.new(params[:entry_type])
     @entry_type.field_type_ids = field_type_ids
+    @entry_type.form_code = build_form_code(@entry_type.field_types)
+    @entry_type.model_code = build_model_code(@entry_type.name, @entry_type.field_types)
+    @entry_type.model = build_model_from_code(@entry_type.name, @entry_type.model_code)
 
     respond_to do |format|
       if @entry_type.save
@@ -61,6 +66,9 @@ class EntryTypesController < TenantController
     @entry_type = EntryType.find(params[:id])
 
     respond_to do |format|
+      field_type_ids = params[:entry_type].delete("field_type_ids")
+      @entry_type.field_type_ids = field_type_ids if field_type_ids
+      params[:entry_type].delete("form_code")
       if @entry_type.update_attributes(params[:entry_type])
         format.html { redirect_to @entry_type, notice: 'Entry type was successfully updated.' }
         format.json { head :no_content }
@@ -82,4 +90,29 @@ class EntryTypesController < TenantController
       format.json { head :no_content }
     end
   end
+
+  protected
+
+    def build_form_code(field_types)
+      out = ''
+      field_types.each do |ft|
+        line = ft.data_type.control_code.sub('_field_name_', ':'+ft.name)
+        line = line.sub('_label_', "'#{ft.label}'")
+        out << line + "\n"
+      end
+      out
+    end
+
+    def build_model_code(name, field_types)
+      out = "class #{name.camelize}; include ActiveAttr::Model; "
+      field_types.each do |ft|
+        out += "attribute :#{ft.name}, :type => #{ft.data_type.ruby_type}; "
+      end
+      out += "end;"
+    end
+
+    def build_model_from_code(name, out)
+      eval out + "@a = #{name.camelize}.new;", @b
+    end
+
 end

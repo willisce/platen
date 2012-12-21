@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121220034638) do
+ActiveRecord::Schema.define(:version => 20121221012229) do
 
   create_table "data_types", :force => true do |t|
     t.string   "name"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20121220034638) do
     t.integer  "user_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.string   "ruby_type"
   end
 
   add_index "data_types", ["user_id"], :name => "index_data_types_on_user_id"
@@ -55,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20121220034638) do
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "model_code"
   end
 
   add_index "entry_types", ["user_id"], :name => "index_entry_types_on_user_id"

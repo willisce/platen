@@ -29,3 +29,4 @@ gem "better_errors", ">= 0.2.0", :group => :development
 gem "binding_of_caller", ">= 0.6.8", :group => :development
 gem "hub", ">= 1.10.2", :require => nil, :group => [:development]
 gem "multitenant", "~>0.4.0"
+gem "active_attr"

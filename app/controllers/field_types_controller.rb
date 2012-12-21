@@ -62,8 +62,8 @@ class FieldTypesController < TenantController
 
     respond_to do |format|
       data_type_id = params[:field_type].delete("data_type_id")
-      if @field_type.update_attributes(params[:field_type]) &&
-          @field_type.data_type_id = data_type_id
+      @field_type.data_type_id = data_type_id 
+      if @field_type.update_attributes(params[:field_type])
         format.html { redirect_to @field_type, notice: 'Field type was successfully updated.' }
         format.json { head :no_content }
       else

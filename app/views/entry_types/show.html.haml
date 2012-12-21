@@ -1,20 +1,25 @@
-%p#notice= notice
-
 %p
-  %b Name:
+  %b.label Name:
   = @entry_type.name
 %p
-  %b Model:
-  = @entry_type.model.class
+  %b.label Model:
+  = @entry_type.model
+
 %p
-  %b Form code:
-  = @entry_type.form_code
+  %b.label Model Code:
+  = @entry_type.model_code
 %p
-  %b Field Types:
+  %b.label
+    Form code:
+  %pre
+    :preserve
+      #{@entry_type.form_code}
+%p
+  %b.label Field Types:
   - @entry_type.field_types.each do |m|
     = m.name + ":" + m.data_type.name
 %p
-  %b User:
+  %b.label User:
   = @entry_type.user.email
 
 = link_to 'Edit', edit_entry_type_path(@entry_type)

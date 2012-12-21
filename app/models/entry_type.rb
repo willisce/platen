@@ -8,6 +8,6 @@ class EntryType < ActiveRecord::Base
   has_many :entry_views
   has_many :section_type_definitions
   has_many :section_types, :through => :section_type_definitions
-  serialize :model, Class
-  attr_accessible :form_code, :model, :name
+  serialize :model
+  attr_accessible :form_code, :model, :name, :model_code
 end
