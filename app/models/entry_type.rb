@@ -10,4 +10,8 @@ class EntryType < ActiveRecord::Base
   has_many :section_types, :through => :section_type_definitions
   serialize :model
   attr_accessible :form_code, :model, :name, :model_code
+
+  def to_s
+    self.name ||= "Unkown Entry Type"
+  end
 end

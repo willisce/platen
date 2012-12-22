@@ -10,5 +10,9 @@ class Section < ActiveRecord::Base
     :foreign_key => "parent_section_id"
   belongs_to :parent_section, :class_name => "Section"
 
-  attr_accessible :title
+  attr_accessible :title, :site_id, :section_type_id, :parent_section_id, :user_id
+
+  def to_s
+    self.title ||= "Unknown Section"
+  end
 end

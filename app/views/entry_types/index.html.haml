@@ -5,8 +5,8 @@
     %th Name
     %th Model
     %th Fields
-    %th Form code
     %th User
+    %th
     %th
     %th
     %th
@@ -19,8 +19,8 @@
         -entry_type.field_types.each do |ft|
           = ft.name + ":" + ft.data_type.name
           %br
-      %td= entry_type.form_code
-      %td= entry_type.user.email
+      %td= entry_type.user
+      %td= link_to 'New Entry', new_entry_type_entry_path(entry_type)
       %td= link_to 'Show', entry_type
       %td= link_to 'Edit', edit_entry_type_path(entry_type)
       %td= link_to 'Destroy', entry_type, method: :delete, data: { confirm: 'Are you sure?' }

@@ -59,6 +59,8 @@ class SectionTypesController < TenantController
   # PUT /section_types/1.json
   def update
     @section_type = SectionType.find(params[:id])
+    entry_type_ids = params[:section_type].delete("entry_type_ids")
+    @section_type.entry_type_ids = entry_type_ids
 
     respond_to do |format|
       if @section_type.update_attributes(params[:section_type])

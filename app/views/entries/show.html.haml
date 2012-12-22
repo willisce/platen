@@ -1,18 +1,17 @@
-%p#notice= notice
-
+ 
 %p
-  %b Data:
-  = @entry.data
+  %b.label Data:
+  = @entry.data.attributes
 %p
-  %b Entry type:
+  %b.label Entry type:
   = @entry.entry_type
 %p
-  %b Section:
+  %b.label Section:
   = @entry.section
 %p
-  %b User:
+  %b.label User:
   = @entry.user
 
-= link_to 'Edit', edit_entry_path(@entry)
+= link_to 'Edit', edit_entry_type_entry_path(@entry_type, @entry)
 \|
-= link_to 'Back', entries_path
+= link_to 'Back', entry_type_entries_path(@entry_type)

@@ -1,11 +1,14 @@
 %p
-  %b Name:
+  %b.label Name:
   = @data_type.name
 %p
-  %b Control code:
+  %b.label Control code:
   = @data_type.control_code
 %p
-  %b User:
+  %b.label Ruby Type
+  = @data_type.ruby_type
+%p
+  %b.label User:
   = @data_type.user.email
 
 = link_to 'Edit', edit_data_type_path(@data_type)

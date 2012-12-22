@@ -9,4 +9,8 @@ class SectionType < ActiveRecord::Base
   has_many :entry_types, :through => :section_type_definitions
   has_many :section_views
   attr_accessible :name
+
+  def to_s
+    self.name ||= "Unknown Section Type"
+  end
 end

@@ -5,11 +5,11 @@ Platen::Application.routes.draw do
   resources :field_types
 
 
+  resources :entry_types do
+    resources :entries
+  end
+
   resources :entries
-
-
-  resources :entry_types
-
 
   resources :entry_views
 

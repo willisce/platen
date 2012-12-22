@@ -1,6 +1,5 @@
 class EntryTypesController < TenantController
-  @a = false
-  @b = binding
+  include PlatenSerializer
   # GET /entry_types
   # GET /entry_types.json
   def index
@@ -47,7 +46,7 @@ class EntryTypesController < TenantController
     @entry_type.field_type_ids = field_type_ids
     @entry_type.form_code = build_form_code(@entry_type.field_types)
     @entry_type.model_code = build_model_code(@entry_type.name, @entry_type.field_types)
-    @entry_type.model = build_model_from_code(@entry_type.name, @entry_type.model_code)
+    @entry_type.model = build_model_from_code(@entry_type)
 
     respond_to do |format|
       if @entry_type.save
@@ -90,29 +89,5 @@ class EntryTypesController < TenantController
       format.json { head :no_content }
     end
   end
-
-  protected
-
-    def build_form_code(field_types)
-      out = ''
-      field_types.each do |ft|
-        line = ft.data_type.control_code.sub('_field_name_', ':'+ft.name)
-        line = line.sub('_label_', "'#{ft.label}'")
-        out << line + "\n"
-      end
-      out
-    end
-
-    def build_model_code(name, field_types)
-      out = "class #{name.camelize}; include ActiveAttr::Model; "
-      field_types.each do |ft|
-        out += "attribute :#{ft.name}, :type => #{ft.data_type.ruby_type}; "
-      end
-      out += "end;"
-    end
-
-    def build_model_from_code(name, out)
-      eval out + "@a = #{name.camelize}.new;", @b
-    end
 
 end

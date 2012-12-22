@@ -1,25 +1,26 @@
-%h1 Listing entries
+%h1 Listing entries for type #{@entry_type.name.camelize}
 
-%table
-  %tr
-    %th Data
-    %th Entry type
-    %th Section
-    %th User
-    %th
-    %th
-    %th
+%table.table.table-striped
+  %thead
+    %tr
+      %th Data
+      %th Entry type
+      %th Section
+      %th User
+      %th
+      %th
+      %th
 
   - @entries.each do |entry|
     %tr
-      %td= entry.data
-      %td= entry.entry_type
-      %td= entry.section
+      %td= entry.data.attributes
+      %td= entry.entry_type.nil? ? "No Entry Type" : entry.entry_type
+      %td= entry.section.nil? ? "No Section" : entry.section
       %td= entry.user
-      %td= link_to 'Show', entry
-      %td= link_to 'Edit', edit_entry_path(entry)
-      %td= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' }
+      %td= link_to 'Show', entry_type_entry_path(@entry_type, entry)
+      %td= link_to 'Edit', edit_entry_type_entry_path(@entry_type, entry)
+      %td= link_to 'Destroy', [@entry_type, entry], method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 
-= link_to 'New Entry', new_entry_path
+= link_to 'New Entry', new_entry_type_entry_path(@entry_type)

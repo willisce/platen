@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
   has_many :site_types
   has_many :sites
 
+  def to_s
+    self.email ||= "Unknown User"
+  end
+  
   protected
     def seed_data_types
       param_array = Array.new
